@@ -1,0 +1,48 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    .page-section {
+        background-color: #f0f0f0;
+        padding: 100px 0;
+        margin-top: 80px; /* Espacio entre la barra de menú y la sección */
+    }
+
+    .section-heading {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: blue;
+        border-color: blue;
+        font-size: 18px;
+        padding: 15px 30px;
+        margin: 10px;
+    }
+
+    .btn-xl {
+        padding: 20px 40px;
+    }
+
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para los botones de perfil y cerrar sesión */
+    .navbar .navbar-nav .btn {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+</style>
+
+    <div style="text-align: center; padding: 150px 0;">
+        <h2 style="color: #4285f4; font-size: 28px; margin-bottom: 10px;">Cierre de Sesión Exitoso</h2>
+        <p style="font-size: 18px; color: #666;">Has cerrado sesión correctamente.</p> 
+        <i class="fas fa-sign-out-alt fa-5x" style="color: #4285f4; margin-top: 30px;" title="Cerrar Sesión"></i>
+    </div>
+{% endblock contenido %}

@@ -1,0 +1,41 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+    <title>Acerca de mi</title>
+{% endblock titulo %}
+
+{% block contenido %}
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-lg-4 text-center">
+                <img src="{% static 'aplicacion/martin.jpg' %}" class="rounded-circle mb-3" width="250px">
+            </div>
+            <div class="col-lg-8 text-center">
+                <h2 class="display-4 mt-5 font-weight-bold text-black">Conóceme</h2>
+                <p class="lead text-dark">
+                    ¡Holaa! Mi nombre es Martin Navarro Teixidor, tengo 19 años y me encuentro en mi segundo año de estudios en la carrera de Ingeniería en Informática en la Universidad de Mendoza. 
+                    Vivo en San Martin, Mendoza. La tecnología y la programación son mi pasión, y constantemente busco nuevas oportunidades para enriquecer mis habilidades y conocimientos en estas áreas.
+                </p>
+                <p class="lead text-dark">
+                    Puedes contactarme a través de mis redes sociales. ¡No dudes en conectarte y charlar!
+                    Mi Correo Electrónico es 'martinnavarro1503@gmail.com'
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="bg-dark text-center py-5 mt-5">
+        <div class="row">
+            <div class="col">
+                <h2 class="h1 text-white mb-4">Conéctate conmigo</h2>
+                <a class="btn btn-outline-light btn-lg btn-social mx-2" href="https://walink.co/5206c1" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a class="btn btn-outline-light btn-lg btn-social mx-2" href="https://www.instagram.com/tinchoo_navarro/" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a class="btn btn-outline-light btn-lg btn-social mx-2" href="https://www.youtube.com/channel/UCDiG_cx5L4Q4atoA4LJykww" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                <a class="btn btn-outline-light btn-lg btn-social mx-2" href="https://www.facebook.com/martin.navarro.773981/" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a class="btn btn-outline-light btn-lg btn-social mx-2" href="https://twitter.com/MartinNT15" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

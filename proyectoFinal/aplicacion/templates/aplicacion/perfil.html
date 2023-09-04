@@ -1,0 +1,51 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block contenido %}
+<style>
+    .page-section {
+        background-color: #f0f0f0;
+        padding: 100px 0;
+        margin-top: 80px; /* Espacio entre la barra de menú y la sección */
+    }
+
+    .section-heading {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: blue;
+        border-color: blue;
+        font-size: 18px;
+        padding: 15px 30px;
+        margin: 10px;
+    }
+
+    .btn-xl {
+        padding: 20px 40px;
+    }
+
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para los botones de perfil y cerrar sesión */
+    .navbar .navbar-nav .btn {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+</style>
+
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center">
+            <h3 class="section-heading text-uppercase">¿Qué desea hacer?</h3>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'ver_perfil' %}">Ver Perfil</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'editar_perfil' %}">Editar Perfil</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'agregar_avatar' %}">Agregar/Cambiar Avatar</a>
+        </div>
+    </div>
+</section>
+
+{% endblock contenido %}

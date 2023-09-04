@@ -1,0 +1,54 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block contenido %}
+<style>
+    .page-section {
+        background-color: #f0f0f0;
+        padding: 100px 0;
+        margin-top: 80px; /* Espacio entre la barra de menú y la sección */
+    }
+
+    .section-heading {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: blue;
+        border-color: blue;
+        font-size: 18px;
+        padding: 15px 30px;
+        margin: 10px;
+    }
+
+    .btn-xl {
+        padding: 20px 40px;
+    }
+
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para los botones de perfil y cerrar sesión */
+    .navbar .navbar-nav .btn {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+</style>
+
+<section class="page-section" id="services">
+    <div class="container">
+        <div class="text-center">
+            <h2 class="section-heading text-uppercase">¿Qué desea Agregar?</h2>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'create_pelicula' %}">Agregar Películas</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'create_serie' %}">Agregar Series</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'create_estreno' %}">Agregar Estrenos</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'create_resenia' %}">Agregar Reseña</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'create_peliculas_taquilleras' %}">Agregar Películas Taquilleras</a>
+            <a class="btn btn-primary btn-xl text-uppercase" href="{% url 'create_top10_series' %}">Agregar Top 10 Series</a>
+        </div>
+    </div>
+</section>
+
+{% endblock contenido %}

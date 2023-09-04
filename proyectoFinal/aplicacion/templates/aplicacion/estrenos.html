@@ -1,0 +1,137 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+    Estrenos
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    body {
+        background-color: #222;
+    }
+
+    .pelicula-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .pelicula-item {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        max-width: 800px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .pelicula-poster {
+        margin-right: 20px;
+        align-self: flex-start;
+    }
+
+    .pelicula-poster img {
+        width: 200px; /* Tamaño fijo para todas las portadas */
+        height: 300px; /* Tamaño fijo para todas las portadas */
+    }
+
+    .star-rating {
+        color: yellow;
+        font-size: 24px;
+        margin-left: 10px;
+    }
+
+    .star-rating[data-rating="1"]:after {
+        content: "★";
+    }
+    .star-rating[data-rating="2"]:after {
+        content: "★★";
+    }
+    .star-rating[data-rating="3"]:after {
+        content: "★★★";
+    }
+    .star-rating[data-rating="4"]:after {
+        content: "★★★★";
+    }
+    .star-rating[data-rating="5"]:after {
+        content: "★★★★★";
+    }
+
+    .btn-add {
+        background-color: blue;
+        border-color: blue;
+        font-size: 20px;
+        padding: 5px 10px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 1;
+        margin-right: 10px;
+    }
+
+    .lista-title {
+        color: white;
+    }
+
+    .btn-agregar {
+        background-color: blue;
+        border-color: blue;
+        font-weight: bold;
+        margin-left: 10px;
+    }
+    .btn-primary {
+        background-color: blue;
+        border-color: blue;
+        font-size: 14px;
+        padding: 5px 10px;
+        margin: 10px;
+    }
+    .btn-xl {
+        padding: 20px 40px;
+    }
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+    .navbar .navbar-nav .btn {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+</style>
+
+<div class="pelicula-list">
+    <h1 class="text-center mb-4 lista-title">Estrenos</h1>
+    <a href="{% url 'create_estreno' %}" class="btn btn-primary btn-sm">
+        <i class="fa fa-plus fa-lg" title="Agregar Estreno"></i>
+    </a>
+    <div class="pelicula-items">
+        {% for estreno in estrenos %}
+        <div class="pelicula-item">
+            <div class="pelicula-poster">
+                <img src="{{ estreno.poster.url }}" alt="{{ estreno.titulo }}">
+            </div>
+            <div class="pelicula-info">
+                <h3>{{ estreno.titulo }}</h3>
+                <p><strong>Tipo de Estreno:</strong> {{ estreno.tipo }}</p>
+                <p><strong>Género:</strong> {{ estreno.genero }}</p>
+                <p><strong>Director:</strong> {{ estreno.director }}</p>
+                <p><strong>Sinopsis:</strong></p>
+                <p class="sinopsis">{{ estreno.sinopsis }}</p>
+                <p><strong>Duración:</strong> {{ estreno.duracion }} minutos</p>
+                <p><strong>Fecha de Estreno:</strong> {{ estreno.fecha_estreno }}</p>
+                <p><a href="{{ estreno.trailer_url }}">Ver Trailer</a></p>
+            </p>
+            <a href="{% url 'update_estreno' estreno.id %}" class="btn btn-primary btn-sm"><i class="fa fa-edit fa-lg"></i></a>
+            <a href="{% url 'delete_estreno' estreno.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock contenido %}

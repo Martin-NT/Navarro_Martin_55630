@@ -1,0 +1,86 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    body {
+        background-color: #222;
+    }
+
+    .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+    }
+
+    .search-card {
+        max-width: 500px;
+        width: 100%;
+        padding: 40px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-weight: bold;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+    }
+    .boton {
+        background-color: blue;
+        border-color: blue;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+    
+    .boton:hover {
+        background-color: #ee0979;
+        border-color: #ee0979;
+    }
+
+
+    .copyright {
+        margin-top: 30px;
+        color: #fff;
+    }
+</style>
+
+<div class="search-container">
+    <div class="search-card card">
+        <div class="card-body">
+            <h2 class="card-title">Buscar un Estreno</h2>
+            <form action="{% url 'buscar4' %}" method="GET">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="buscar" class="form-label">Patrón a buscar en Estrenos:</label>
+                    <input type="text" name="buscar" id="buscar" class="form-control">
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary me-md-2 boton">Buscar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="text-center copyright">
+    <p>&copy; {{ current_year }} Tu Compañía. Todos los derechos reservados.</p>
+</div>
+{% endblock contenido %}

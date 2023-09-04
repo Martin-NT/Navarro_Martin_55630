@@ -1,0 +1,103 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+    Películas
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+
+    .pelicula_taquillera-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .pelicula_taquillera-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        max-width: 800px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: white;
+    }
+
+    .pelicula_taquillera-poster {
+        margin-bottom: 10px;
+        max-width: 100%;
+    }
+
+    .pelicula_taquillera-poster img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .pelicula_taquillera-info {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .sinopsis {
+        max-height: 150px;
+        overflow: hidden;
+    }
+
+    .acciones {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .acciones a {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+</style>
+
+<div class="pelicula_taquillera-list">
+    <h2>Películas</h2>
+    <a href="{% url 'create_pelicula_taquillera' %}" class="btn btn-primary btn-sm">
+        <i class="fa fa-plus fa-lg" title="New Record"></i> Agregar Película Taquillera
+    </a>
+
+    <div class="pelicula_taquillera-items">
+        {% for pelicula_taquillera in peliculas_taquilleras %}
+        <div class="pelicula_taquillera-item">
+            <div class="pelicula_taquillera-poster">
+                <img src="{{ pelicula_taquillera.poster.url }}" alt="{{ pelicula_taquillera.titulo }}">
+            </div>
+            <div class="pelicula_taquillera-info">
+                <h3>{{ pelicula_taquillera.titulo }}</h3>
+                <p><strong>Puesto:</strong> {{ pelicula_taquillera.puesto }}</p>
+                <p><strong>Director:</strong> {{ pelicula_taquillera.director }}</p>
+                <p><strong>Distribuidora:</strong> {{ pelicula_taquillera.distribuidora }}</p>
+                <p><strong>Recaudación Mundial:</strong> {{ pelicula_taquillera.recaudacion_mundial }}</p>
+                <p><strong>Presupuesto:</strong> {{ pelicula_taquillera.presupuesto }}</p>
+                <p><strong>Duración:</strong> {{ pelicula_taquillera.duracion }} minutos</p>
+                <p><strong>Año de Estreno:</strong> {{ pelicula_taquillera.anio_estreno }}</p>
+                <p><a href="{{ pelicula_taquillera.trailer_url }}">Ver Trailer</a></p>
+            </div>
+            <div class="acciones">
+                <a href="{% url 'update_pelicula_taquillera' pelicula_taquillera.id %}" class="btn btn-primary">
+                    <i class="fa fa-edit fa-sm" title="Edit Record"></i> Editar
+                </a>
+                <a href="{% url 'delete_pelicula_taquillera' pelicula_taquillera.id %}" class="btn btn-danger">
+                    <i class="fa fa-trash fa-sm" title="Delete Record"></i> Eliminar
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock contenido %}

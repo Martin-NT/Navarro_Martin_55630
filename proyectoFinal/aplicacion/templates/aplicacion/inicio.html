@@ -1,0 +1,56 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+        <!-- Header-->
+        <header class="masthead text-center text-white">
+            <div class="masthead-content">
+                <div class="container px-5">
+                    <h1 class="masthead-heading mb-0">Cineplus</h1>
+                    <h2 class="masthead-subheading mb-0">Noticias del Mundo del Cine </h2>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="{% url 'acerca_de' %}">Acerca de mi</a>
+                </div>
+            </div>
+            <div class="bg-circle-1 bg-circle"></div>
+            <div class="bg-circle-2 bg-circle"></div>
+            <div class="bg-circle-3 bg-circle"></div>
+            <div class="bg-circle-4 bg-circle"></div>
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    .page-section {
+        background-color: #f0f0f0;
+        padding: 100px 0;
+        margin-top: 80px; /* Espacio entre la barra de menú y la sección */
+    }
+
+    .section-heading {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    .btn-primary {
+        background-color: blue;
+        border-color: blue;
+        font-size: 18px;
+        padding: 15px 30px;
+        margin: 10px;
+    }
+
+    .btn-xl {
+        padding: 20px 40px;
+    }
+
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para los botones de perfil y cerrar sesión */
+    .navbar .navbar-nav .btn {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+</style>
+
+{% endblock contenido %}

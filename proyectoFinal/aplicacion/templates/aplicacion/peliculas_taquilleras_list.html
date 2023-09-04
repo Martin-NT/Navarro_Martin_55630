@@ -1,0 +1,148 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+
+{% endblock titulo %}
+
+{% block contenido %}
+
+<style>
+  body {
+    background-color: #222;
+  }
+
+  .pelicula-taquillera-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+    margin-top: 80px;
+  }
+
+  .pelicula-taquillera-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    max-width: 800px;
+    border: 1px solid #ddd;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .pelicula-taquillera-poster {
+    margin-right: 20px;
+  }
+
+  .star-rating {
+    color: yellow;
+    font-size: 24px;
+    margin-left: 10px;
+  }
+
+  .star-rating[data-rating="1"]:after {
+    content: "★";
+  }
+
+  .star-rating[data-rating="2"]:after {
+    content: "★★";
+  }
+
+  .star-rating[data-rating="3"]:after {
+    content: "★★★";
+  }
+
+  .star-rating[data-rating="4"]:after {
+    content: "★★★★";
+  }
+
+  .star-rating[data-rating="5"]:after {
+    content: "★★★★★";
+  }
+
+  .btn-add {
+    background-color: blue;
+    border-color: blue;
+    font-size: 20px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 1;
+    margin-right: 10px;
+  }
+
+  .lista-title {
+    color: white;
+  }
+
+  .btn-agregar {
+    background-color: blue;
+    border-color: blue;
+    font-weight: bold;
+    margin-left: 10px; /* Ajusta el margen izquierdo */
+  }
+
+  .btn-primary {
+    background-color: blue;
+    border-color: blue;
+    font-size: 14px; /* Cambiado el tamaño del botón Editar */
+    padding: 5px 10px; /* Cambiado el padding del botón Editar */
+    margin: 10px;
+  }
+
+  .btn-xl {
+    padding: 20px 40px;
+  }
+
+  .text-uppercase {
+    text-transform: uppercase;
+  }
+
+  /* Estilo para los botones de perfil y cerrar sesión */
+  .navbar .navbar-nav .btn {
+    font-size: 15px;
+    padding: 5px 10px;
+  }
+</style>
+
+<div class="pelicula-taquillera-list">
+  <div class="d-flex align-items-center">
+    <h1 class="text-center mb-4 lista-title">Lista de Películas Taquilleras</h1>
+    <tr>
+      <td>
+        <a
+          href="{% url 'create_peliculas_taquilleras' %}"
+          class="btn btn-primary btn-sm"
+        ><i class="fa fa-plus fa-lg" title="Agregar Película Taquillera"> </i>
+        </a>
+      </td>
+    </tr>
+  </div>
+  <div class="pelicula-taquillera-items">
+    {% for pelicula_taquillera in peliculas_taquilleras %}
+    <div class="pelicula-taquillera-item">
+      <div class="pelicula-taquillera-poster">
+        <img src="{{ pelicula_taquillera.poster.url }}" alt="{{ pelicula_taquillera.titulo }}" width="200">
+      </div>
+      <div class="pelicula-taquillera-info">
+        <h3>{{ pelicula_taquillera.titulo }}</h3>
+        <p><strong>Puesto:</strong> {{ pelicula_taquillera.puesto }}</p>
+        <p><strong>Director:</strong> {{ pelicula_taquillera.director }}</p>
+        <p><strong>Distribuidora:</strong> {{ pelicula_taquillera.distribuidora }}</p>
+        <p><strong>Recaudación Mundial:</strong> {{ pelicula_taquillera.recaudacion_mundial }}</p>
+        <p><strong>Presupuesto:</strong> {{ pelicula_taquillera.presupuesto }}</p>
+        <p><strong>Duración:</strong> {{ pelicula_taquillera.duracion }} minutos</p>
+        <p><strong>Año de Estreno:</strong> {{ pelicula_taquillera.anio_estreno }}</p>
+        <p><a href="{{ pelicula_taquillera.trailer_url }}">Ver Trailer</a></p>
+        <a href="{% url 'update_peliculas_taquilleras' pelicula_taquillera.id %}" class="btn btn-primary btn-sm"><i class="fa fa-edit fa-lg"></i></a>
+        <a href="{% url 'delete_peliculas_taquilleras' pelicula_taquillera.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock contenido %}

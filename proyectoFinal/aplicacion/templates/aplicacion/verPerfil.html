@@ -1,0 +1,107 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+<style>
+    body {
+        background-color: #222;
+    }
+
+    .titulo {
+        text-align: center;
+        margin-top: 100px; /* Ajusta el margen superior para mover el título hacia abajo */
+        margin-bottom: 20px;
+    }
+
+    .title {
+        font-size: 36px;
+        color: white;
+        margin-bottom: 20px; /* Añade margen inferior al título para separarlo del contenido */
+    }
+
+    .profile-section {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        padding: 30px;
+        max-width: 500px;
+        margin: 0 auto; /* Centra el perfil horizontalmente */
+        margin-top: 20px; /* Ajusta el margen superior para mover el contenido hacia abajo */
+        text-align: left; /* Alinea el contenido a la izquierda */
+    }
+
+    .profile-heading {
+        font-size: 24px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .profile-info {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    /* Estilo para el botón Editar Perfil */
+    .edit-profile-btn {
+        background-color: blue;
+        border-color: blue;
+        color: #fff;
+        padding: 15px 30px;
+        margin: 10px;
+        font-size: 18px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        display: block;
+        text-align: center;
+    }
+
+    /* Cambia el color al pasar el mouse sobre el botón */
+    .edit-profile-btn:hover {
+        background-color: #ee0979;
+        border-color: #ee0979;
+    }
+
+    /* Establece el tamaño de fuente para los botones a 20px */
+    .btn-primary {
+        background-color: blue;
+        border-color: blue;
+        font-size: 15px;
+        padding: 15px 30px;
+        margin: 10px;
+    }
+
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+
+    /* Estilo para los botones de perfil y cerrar sesión */
+    .navbar .navbar-nav .btn {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+</style>
+
+{% endblock titulo %}
+
+{% block contenido %}
+<div class="titulo">
+    <h1 class="title">Ver Perfil de Usuario</h1>
+</div>
+<div class="profile-section">
+    <p class="profile-info"><strong>Avatar:</strong></p>
+    <div class="col-lg-4 text-center">
+        <img src="{{ request.session.avatar }}" class="rounded-circle mb-3" width="100px">
+    </div>
+    <p class="profile-info"><strong>Username:</strong> {{ usuario.username }}</p>
+    <p class="profile-info"><strong>Email:</strong> {{ usuario.email }}</p>
+    <p class="profile-info"><strong>Nombre:</strong> {{ usuario.first_name }}</p>
+    <p class="profile-info"><strong>Apellido:</strong> {{ usuario.last_name }}</p>
+    <a class="btn btn-primary edit-profile-btn" href="{% url 'editar_perfil' %}">
+        <i class="fa fa-edit fa-lg" title="Editar Perfil"></i> Editar Perfil
+    </a>
+    <a class="btn btn-primary edit-profile-btn" href="{% url 'agregar_avatar' %}">
+        <i class="fa fa-edit fa-lg" title="Agregar Avatar"></i> Cambiar Avatar
+    </a>
+</div>
+{% endblock contenido %}

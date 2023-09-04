@@ -1,0 +1,101 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+    Reseñas
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+
+    .reseña-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .reseña-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        max-width: 800px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: white;
+    }
+
+    .reseña-poster {
+        margin-bottom: 10px;
+        max-width: 100%;
+    }
+
+    .reseña-poster img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .reseña-info {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .sinopsis {
+        max-height: 150px;
+        overflow: hidden;
+    }
+
+    .acciones {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .acciones a {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+</style>
+
+<div class="resenia-list">
+    <h2>Reseñas</h2>
+    <a href="{% url 'create_resenia' %}" class="btn btn-primary btn-sm">
+        <i class="fa fa-plus fa-lg" title="New Record"></i> Agregar Reseña
+    </a>
+
+    <div class="resenia-items">
+        {% for resenia in resenias %}
+        <div class="resenia-item">
+            <div class="resenia-info">
+                <div class="col-lg-4 text-center">
+                    <img src="{{ resenia.user.profile.avatar.url }}" class="rounded-circle mb-3" width="100px">
+                </div>
+                <h3>{{ resenia.titulo_tipo }}</h3>
+                <p><strong>Usuario:</strong> {{ resenia.user }}</p>
+                <p><strong>Tipo:</strong> {{ resenia.tipo }}</p>
+                <p><strong>Titulo:</strong> {{ resenia.titulo_tipo }}</p>
+                <p><strong>Contenido:</strong> {{ resenia.contenido }}</p>
+                <p><strong>Calificación:</strong> {{ resenia.calificacion }}</p>
+                <p><strong>Fecha de Publicación:</strong> {{resenia.fecha_publicacion}} </p>
+            </div>
+            <div class="acciones">
+                <a href="{% url 'update_resenia' resenia.id %}" class="btn btn-primary">
+                    <i class="fa fa-edit fa-sm" title="Edit Record"></i> Editar
+                </a>
+                <a href="{% url 'delete_resenia' resenia.id %}" class="btn btn-danger">
+                    <i class="fa fa-trash fa-sm" title="Delete Record"></i> Eliminar
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock contenido %}

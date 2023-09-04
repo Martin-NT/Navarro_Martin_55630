@@ -1,0 +1,147 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+
+{% endblock titulo %}
+
+{% block contenido %}
+
+<style>
+    body {
+        background-color: #222;
+    }
+
+    .series-list, .estreno-list, .resenia-list { /* Aplicar estilos a todas las listas */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .serie-item, .estreno-item, .resenia-item { /* Estilos comunes para elementos de series, estrenos y reseñas */
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+        max-width: 800px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .poster { /* Estilos comunes para carteles */
+        margin-right: 20px;
+    }
+
+    .star-rating {
+        font-size: 24px;
+        margin-left: 10px;
+        display: inline-block;
+        position: relative;
+    }
+    
+    .star-rating:before {
+        content: "★";
+        color: yellow; /* Color de relleno amarillo */
+        border: black;
+    }
+    
+    
+    .star-rating:before {
+        content: "★★";
+        color: yellow; /* Color de relleno amarillo */
+    }
+    
+    .star-rating:before {
+        content: "★★★";
+        color: yellow; /* Color de relleno amarillo */
+    }
+    
+    .star-rating:before {
+        content: "★★★★";
+        color: yellow; /* Color de relleno amarillo */
+    }
+    
+    .star-rating:before {
+        content: "★★★★★";
+        color: yellow; /* Color de relleno amarillo */
+    }
+
+    .btn-add {
+        background-color: blue;
+        border-color: blue;
+        font-size: 20px;
+        padding: 5px 10px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 1;
+        margin-right: 10px;
+    }
+
+    .lista-title {
+        color: white;
+    }
+
+    .btn-agregar {
+        background-color: blue;
+        border-color: blue;
+        font-weight: bold;
+        margin-left: 10px; /* Ajustar el margen izquierdo */
+    }
+    .btn-primary {
+        background-color: blue;
+        border-color: blue;
+        font-size: 14px; /* Cambiar el tamaño del botón Editar */
+        padding: 5px 10px; /* Cambiar el padding del botón Editar */
+        margin: 10px;
+    }
+    .btn-xl {
+        padding: 20px 40px;
+    }
+    .text-uppercase {
+        text-transform: uppercase;
+    }
+    /* Estilo para los botones de perfil y cerrar sesión */
+    .navbar .navbar-nav .btn {
+        font-size: 15px;
+        padding: 5px 10px;
+    }
+</style>
+
+<div class="resenia-list"> <!-- Cambiado a resenia-list -->
+    <div class="d-flex align-items-center">
+        <h1 class="text-center mb-4 lista-title">Lista de Reseñas</h1>
+        <tr>
+            <td>
+                <a
+                href="{% url 'create_resenia' %}"
+                class="btn btn-primary btn-sm"
+                ><i class="fa fa-plus fa-lg" title="Agregar Reseña"> </i>
+                </a>
+            </td>
+        </tr>
+    </div>
+    <div class="resenia-items"> <!-- Cambiado a resenia-items -->
+        {% for resenia in resenias %}
+        <div class="resenia-item"> <!-- Cambiado a resenia-item -->
+            <div class="resenia-info"> <!-- Cambiado a pelicula-info -->
+                <h3 class="text-center mb-4 title">{{ resenia.titulo_tipo }}</h3>
+                <p class="profile-info"><strong>Usuario: </strong>{{ resenia.user }}</p>
+                <p><strong>Tipo:</strong> {{ resenia.tipo }}</p>
+                <p><strong>Titulo:</strong> {{ resenia.titulo_tipo }}</p>
+                <p><strong>Contenido:</strong> {{ resenia.contenido }}</p>
+                <p><strong>Calificación:</strong> {{ resenia.calificacion }}</p>
+                <p><strong>Fecha de Publicación:</strong> {{ resenia.fecha_publicacion }} </p>
+                <a href="{% url 'update_resenia' resenia.id %}" class="btn btn-primary btn-sm"><i class="fa fa-edit fa-lg"></i></a>
+                <a href="{% url 'delete_resenia' resenia.id %}" class="btn btn-danger btn-sm"><i class="fa fa-trash fa-lg"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock contenido %}

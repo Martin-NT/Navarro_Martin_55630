@@ -1,0 +1,102 @@
+{% extends 'aplicacion/index.html' %}
+{% load static %}
+
+{% block titulo %}
+    Top 10 Series
+{% endblock titulo %}
+
+{% block contenido %}
+<style>
+    body {
+        background-color: #f0f0f0;
+    }
+
+    .top10_series-list {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        margin-top: 80px;
+    }
+
+    .top10_series-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+        max-width: 800px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        background-color: white;
+    }
+
+    .top10_series-poster {
+        margin-bottom: 10px;
+        max-width: 100%;
+    }
+
+    .top10_series-poster img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .top10_series-info {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .sinopsis {
+        max-height: 150px;
+        overflow: hidden;
+    }
+
+    .acciones {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 5px;
+    }
+
+    .acciones a {
+        font-size: 14px;
+        margin: 0 5px;
+    }
+</style>
+
+<div class="top10_series-list">
+    <h2>Películas</h2>
+    <a href="{% url 'create_top10_series' %}" class="btn btn-primary btn-sm">
+        <i class="fa fa-plus fa-lg" title="New Record"></i> Agregar Serie al Top 10
+    </a>
+
+    <div class="top10_series-items">
+        {% for top10_serie in top10_series %}
+        <div class="top10_series-item">
+            <div class="top10_series-poster">
+                <img src="{{ top10_serie.poster.url }}" alt="{{ top10_serie.titulo }}">
+            </div>
+            <div class="top10_series-info">
+                <h3>{{ top10_serie.titulo }}</h3>
+                <p><strong>Puesto:</strong> {{ top10_serie.puesto }}</p>
+                <p><strong>Género:</strong> {{ top10_serie.genero }}</p>
+                <p><strong>Temporadas:</strong> {{ top10_serie.temporadas }}</p>
+                <p><strong>Capitulos:</strong> {{ top10_serie.capitulos }}</p>
+                <p><strong>Presupuesto:</strong> {{ top10_serie.presupuesto }}</p>
+                <p><strong>Año de Estreno:</strong> {{ top10_serie.anio_estreno }}</p>
+                <p><a href="{{ top10_serie.trailer_url }}">Ver Trailer</a></p>
+            </div>
+            <div class="acciones">
+                <a href="{% url 'update_top10_series' top10_series.id %}" class="btn btn-primary">
+                    <i class="fa fa-edit fa-sm" title="Edit Record"></i> Editar
+                </a>
+                <a href="{% url 'delete_top10_series' top10_series.id %}" class="btn btn-danger">
+                    <i class="fa fa-trash fa-sm" title="Delete Record"></i> Eliminar
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock contenido %}
